@@ -112,17 +112,18 @@ class DaemonProcess
         umask(0);
     }
 
+    //这里执行具体业务
     public function work(){
         $i = 0;
 
         while($i < 100){
             file_put_contents('/tmp/work_index', $i."\n", FILE_APPEND);
             $i++;
-            //sleep(1);
+            sleep(1);
         }
     }
 }
 
 $daemon = new DaemonProcess();
-die();
+die();   //测试用，不退出的话会一直作为守护进程执行
 ```
