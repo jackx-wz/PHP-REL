@@ -33,6 +33,7 @@ class People{
     private $sex = 'male';
     private $favorite;
 
+    //这里使用依赖注入的方式得到 Sex 对象
     public function __construct(Sex $sex, string $name, $favorite='water'){
         echo "start create people\n";
         $this->sex = $sex->title;
