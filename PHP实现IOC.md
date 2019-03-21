@@ -64,7 +64,13 @@ class Ioc{
                 if($v->getClass() instanceof ReflectionClass){
                     $params[] = $this->make($v->getClass()->name);
                 } else{
-                    $params[] = $v;
+                    if($v->isOptional()){  //有默认值的参数
+                        $params[] = $v->getDefaultValue();
+                    } else{   //没有默认值的参数
+                        $null = '';
+                        $paramType = $v->getType()->getName();
+                        $params[] = settype($null, $paramType);
+                    }
                 }
             }
         }
